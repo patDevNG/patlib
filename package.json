@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "dev": "nodemon --exec babel-node ./src/app.js",
+    "lint": "eslint src/  --fix",
     "clean": "rm -rf build && mkdir build",
     "build-babel": "babel ./src --out-dir ./build",
     "build": "npm run clean && npm run build-babel",
