@@ -4,7 +4,13 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon --exec babel-node ./src/server.js",
+    "clean": "rm -rf build && mkdir build",
+    "build-babel": "babel ./src --out-dir ./build",
+    "build": "npm run clean && npm run build-babel",
+    "start": "npm run build && node ./build/server.js",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "test": "cross-env NODE_ENV=test npm  nyc --reporter=text --reporter=html mocha src/tests --timeout 25000 --exit"
   },
   "author": "",
   "license": "ISC",
@@ -22,7 +28,8 @@
     "mocha": "^6.1.4",
     "mongoose": "^5.5.11",
     "morgan": "^1.9.1",
-    "nodemailer": "^6.2.1"
+    "nodemailer": "^6.2.1",
+    "nodemon": "^1.19.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
